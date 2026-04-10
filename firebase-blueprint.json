@@ -1,0 +1,47 @@
+{
+  "entities": {
+    "Briefing": {
+      "title": "Briefing",
+      "description": "Respostas do formulário de briefing",
+      "type": "object",
+      "properties": {
+        "projectName": { "type": "string", "description": "Nome do projeto" },
+        "contactEmail": { "type": "string", "format": "email", "description": "E-mail de contato" },
+        "mainObjective": { "type": "string", "description": "Objetivo principal" },
+        "productDescription": { "type": "string", "description": "Descrição do produto" },
+        "launchType": { "type": "string", "description": "Tipo de lançamento" },
+        "deadline": { "type": "string", "description": "Prazo de entrega" },
+        "siteUrl": { "type": "string", "description": "URL do site" },
+        "targetAudience": { "type": "string", "description": "Público-alvo" },
+        "gender": { "type": "string", "description": "Gênero predominante" },
+        "ageRange": { "type": "array", "items": { "type": "string" }, "description": "Faixa etária" },
+        "competitors": { "type": "string", "description": "Concorrentes" },
+        "differential": { "type": "string", "description": "Diferencial" },
+        "copyStatus": { "type": "string", "description": "Status da copy" },
+        "testimonials": { "type": "string", "description": "Depoimentos" },
+        "hasVsl": { "type": "string", "description": "Tem VSL" },
+        "hasPhotos": { "type": "string", "description": "Tem fotos" },
+        "paymentPlatform": { "type": "string", "description": "Plataforma de pagamento" },
+        "designStyle": { "type": "string", "description": "Estilo de design" },
+        "brandAttributes": { "type": "array", "items": { "type": "string" }, "description": "Atributos da marca" },
+        "designAvoid": { "type": "string", "description": "O que evitar no design" },
+        "referenceSites": { "type": "string", "description": "Sites de referência" },
+        "preferredColors": { "type": "string", "description": "Cores preferidas" },
+        "avoidColors": { "type": "string", "description": "Cores a evitar" },
+        "brandAssetsUrl": { "type": "string", "description": "URL dos arquivos de marca" },
+        "devPlatform": { "type": "string", "description": "Plataforma de dev" },
+        "requiredIntegrations": { "type": "array", "items": { "type": "string" }, "description": "Integrações" },
+        "technicalNotes": { "type": "string", "description": "Notas técnicas" },
+        "additionalInfo": { "type": "string", "description": "Informações adicionais" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Data de criação" }
+      },
+      "required": ["projectName", "contactEmail", "mainObjective", "copyStatus", "referenceSites"]
+    }
+  },
+  "firestore": {
+    "briefings/{briefingId}": {
+      "schema": "Briefing",
+      "description": "Coleção de briefings enviados"
+    }
+  }
+}
