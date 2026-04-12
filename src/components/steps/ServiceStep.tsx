@@ -1,8 +1,8 @@
 import React from 'react';
 import { BriefingData } from '../../types';
-import { Label } from '../ui/label';
-import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
-import { Badge } from '../ui/badge';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Badge } from '@/components/ui/badge';
 import { Layout, Share2, Globe, Rocket } from 'lucide-react';
 
 interface StepProps {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from '../ui/card';
+import { Card } from '@/components/ui/card';
 import { Info, CheckCircle2, Clock, ShieldCheck } from 'lucide-react';
 
 interface IntroStepProps {

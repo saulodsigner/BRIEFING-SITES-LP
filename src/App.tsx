@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Button } from './components/ui/button';
-import { Progress } from './components/ui/progress';
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 
 import { BriefingData, initialData } from './types';
 
@@ -9,14 +9,14 @@ import { ChevronLeft, ChevronRight, Send, CheckCircle2, Loader2 } from 'lucide-r
 import { sendBriefing } from './firebase';
 
 // Step Components
-import IntroStep from './components/steps/IntroStep';
-import ServiceStep from './components/steps/ServiceStep';
-import ProjectStep from './components/steps/ProjectStep';
-import AudienceStep from './components/steps/AudienceStep';
-import ContentStep from './components/steps/ContentStep';
-import DesignStep from './components/steps/DesignStep';
-import TechnicalStep from './components/steps/TechnicalStep';
-import FinalStep from './components/steps/FinalStep';
+import IntroStep from '@/components/steps/IntroStep';
+import ServiceStep from '@/components/steps/ServiceStep';
+import ProjectStep from '@/components/steps/ProjectStep';
+import AudienceStep from '@/components/steps/AudienceStep';
+import ContentStep from '@/components/steps/ContentStep';
+import DesignStep from '@/components/steps/DesignStep';
+import TechnicalStep from '@/components/steps/TechnicalStep';
+import FinalStep from '@/components/steps/FinalStep';
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(0);
