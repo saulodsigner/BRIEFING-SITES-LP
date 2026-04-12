@@ -1,9 +1,9 @@
 import React from 'react';
 import { BriefingData } from '../../types';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
+import { Label } from '../ui/label';
+import { Textarea } from '../ui/textarea';
+import { Input } from '../ui/input';
+import { Badge } from '../ui/badge';
 
 interface StepProps {
   data: BriefingData;
