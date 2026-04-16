@@ -1,57 +1,99 @@
 export interface BriefingData {
-  serviceType: string;
-  websiteCategory: string;
-  // Section 1: Projeto
+  serviceType: 'sites_lp' | 'brand_identity' | 'social_media' | '';
+
+  // --- Sites & Landing Pages (Existing) ---
   projectName: string;
   contactEmail: string;
   mainObjective: string;
   productDescription: string;
-  launchType: string;
+  projectType: string;
   deadline: string;
   siteUrl: string;
 
-  // Section 2: Público & Mercado
+  // --- Identidade Visual (New) ---
+  brandName: string;
+  brandNameMeaning: string;
+  whyPeopleNeedYou: string;
+  brandDescription: string;
+  brandAge: string;
+  productsServices: string;
+  missionVisionValues: string;
+  socialClass: string;
+  brandAgeRange: string;
+  howClientsDescribe: string;
+  howClientsFind: string;
+  brandPersonPositive: string;
+  brandPersonNegative: string;
+  slogan: string;
+  brandHistory: string;
+  brandValues: string;
+  logoType: string; // Tipográfico, Iconográfico, Combinado
+  brandApplications: string[]; // Digital, Impresso, etc.
+
+  // --- Social Media (New) ---
+  socialPlatforms: string[];
+  postFrequency: string;
+  toneOfVoice: string;
+  contentThemes: string;
+  hasBrandIdentity: string;
+
+  // --- Common / Shared ---
   targetAudience: string;
   gender: string;
   ageRange: string[];
   competitors: string;
   differential: string;
-
-  // Section 3: Conteúdo
   copyStatus: string;
   testimonials: string;
-  hasVsl: string;
-  hasPhotos: string;
+  vslStatus: string;
+  photosStatus: string;
   paymentPlatform: string;
-
-  // Section 4: Design
-  designStyle: string;
+  designVibe: string;
   brandAttributes: string[];
   designAvoid: string;
   referenceSites: string;
   preferredColors: string;
   avoidColors: string;
+  typographyPreference: string;
   brandAssetsUrl: string;
-
-  // Section 5: Técnico
   devPlatform: string;
-  requiredIntegrations: string[];
+  integrations: string[];
   technicalNotes: string;
-
-  // Section 6: Finalização
   additionalInfo: string;
 }
 
 export const initialData: BriefingData = {
-  serviceType: "",
-  websiteCategory: "",
+  serviceType: '',
   projectName: "",
-  contactEmail: "",
+  contactEmail: "contatojsaulo@gmail.com",
   mainObjective: "",
   productDescription: "",
-  launchType: "",
+  projectType: "",
   deadline: "",
   siteUrl: "",
+  brandName: "",
+  brandNameMeaning: "",
+  whyPeopleNeedYou: "",
+  brandDescription: "",
+  brandAge: "",
+  productsServices: "",
+  missionVisionValues: "",
+  socialClass: "",
+  brandAgeRange: "",
+  howClientsDescribe: "",
+  howClientsFind: "",
+  brandPersonPositive: "",
+  brandPersonNegative: "",
+  slogan: "",
+  brandHistory: "",
+  brandValues: "",
+  logoType: "",
+  brandApplications: [],
+  socialPlatforms: [],
+  postFrequency: "",
+  toneOfVoice: "",
+  contentThemes: "",
+  hasBrandIdentity: "",
   targetAudience: "",
   gender: "",
   ageRange: [],
@@ -59,18 +101,19 @@ export const initialData: BriefingData = {
   differential: "",
   copyStatus: "",
   testimonials: "",
-  hasVsl: "",
-  hasPhotos: "",
+  vslStatus: "",
+  photosStatus: "",
   paymentPlatform: "",
-  designStyle: "",
+  designVibe: "",
   brandAttributes: [],
   designAvoid: "",
   referenceSites: "",
   preferredColors: "",
   avoidColors: "",
+  typographyPreference: "",
   brandAssetsUrl: "",
   devPlatform: "",
-  requiredIntegrations: [],
+  integrations: [],
   technicalNotes: "",
   additionalInfo: "",
 };
