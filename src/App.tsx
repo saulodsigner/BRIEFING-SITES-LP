@@ -78,8 +78,8 @@ function BriefingForm() {
         createdAt: serverTimestamp(),
       });
       setSuccess(true);
-    } catch (error) {
-      alert('Erro ao enviar o briefing. Por favor, tente novamente.');
+    } catch (error: any) {
+      alert(`Erro ao enviar: ${error.message || error}`);
       console.error(error);
     } finally {
       setLoading(false);
