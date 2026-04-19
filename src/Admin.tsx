@@ -70,6 +70,7 @@ const FIELD_LABELS: Record<string, string> = {
 export default function Admin() {
   const [briefings, setBriefings] = useState<BriefingDoc[]>([]);
   const [loading, setLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
   const [selectedBriefing, setSelectedBriefing] = useState<BriefingDoc | null>(null);
 
   useEffect(() => {
@@ -90,8 +91,9 @@ export default function Admin() {
         });
 
         setBriefings(data);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching briefings: ", error);
+        setErrorMsg(error.message || String(error));
       } finally {
         setLoading(false);
       }
@@ -106,6 +108,18 @@ export default function Admin() {
         <Loader2 className="w-8 h-8 animate-spin text-primary" />
       </div>
     );
+  }
+
+  if (errorMsg) {
+    return (
+      <div className="min-h-screen flex items-center justify-center flex-col bg-background p-6">
+        <div className="bg-red-50 text-red-600 p-6 rounded-2xl max-w-lg w-full text-center">
+            <h2 className="font-bold text-xl mb-2">Erro de Conexão</h2>
+            <p className="text-sm">{errorMsg}</p>
+        </div>
+        <Link to="/" className="mt-8 btn-secondary">Voltar</Link>
+      </div>
+    )
   }
 
   const getServiceLabel = (type: string) => {
