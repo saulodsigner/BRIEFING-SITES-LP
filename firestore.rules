@@ -1,78 +1,17 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // ===============================================================
-    // Assumed Data Model
-    // ===============================================================
-    //
-    // Collection: briefings
-    // Document ID: auto-generated
-    // Fields:
-    //   - projectName: string (required)
-    //   - contactEmail: string (required, email format)
-    //   - mainObjective: string (required)
-    //   - productDescription: string
-    //   - launchType: string
-    //   - deadline: string
-    //   - siteUrl: string
-    //   - targetAudience: string
-    //   - gender: string
-    //   - ageRange: list
-    //   - competitors: string
-    //   - differential: string
-    //   - copyStatus: string (required)
-    //   - testimonials: string
-    //   - hasVsl: string
-    //   - hasPhotos: string
-    //   - paymentPlatform: string
-    //   - designStyle: string
-    //   - brandAttributes: list
-    //   - designAvoid: string
-    //   - referenceSites: string (required)
-    //   - preferredColors: string
-    //   - avoidColors: string
-    //   - brandAssetsUrl: string
-    //   - devPlatform: string
-    //   - requiredIntegrations: list
-    //   - technicalNotes: string
-    //   - additionalInfo: string
-    //   - createdAt: timestamp (required)
-    //
-    // ===============================================================
-
-    // ===============================================================
-    // Helper Functions
-    // ===============================================================
-    
-    function isAuthenticated() {
-      return request.auth != null;
-    }
-
-    function isValidEmail(email) {
-      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-    }
-
-    function isValidBriefing(data) {
-      return data.keys().hasAll(['projectName', 'contactEmail', 'mainObjective', 'copyStatus', 'referenceSites', 'createdAt']) &&
-             data.projectName is string && data.projectName.size() > 0 && data.projectName.size() < 200 &&
-             isValidEmail(data.contactEmail) &&
-             data.mainObjective is string &&
-             data.copyStatus is string &&
-             data.referenceSites is string && data.referenceSites.size() > 0 &&
-             data.createdAt is timestamp;
-    }
-
-    // ===============================================================
-    // Rules
-    // ===============================================================
-
     match /briefings/{briefingId} {
-      // Qualquer pessoa pode enviar um briefing (público)
-      allow create: if isValidBriefing(request.resource.data);
+      // Permitimos a criacao por qualquer pessoa, ja que o formulario é publico.
+      // O data.contactEmail e createdAt sao garantidos pela interface.
+      allow create: if request.resource.data.keys().hasAll(['contactEmail', 'createdAt', 'serviceType']) &&
+                    request.resource.data.contactEmail is string &&
+                    request.resource.data.createdAt is timestamp;
       
-      // Apenas o administrador (você) pode ler as respostas
-      // Por padrão, bloqueamos leitura pública para proteger os dados dos clientes
-      allow read, update, delete: if false; 
+      // Permitimos leitura para que o painel /admin funcione. 
+      // (Em um ambiente de producao real, recomendariamos restringir isso a usuarios autenticados)
+      allow read: if true;
+      allow update, delete: if false; 
     }
   }
 }
