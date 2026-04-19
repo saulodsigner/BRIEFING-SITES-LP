@@ -2,16 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /briefings/{briefingId} {
-      // Permitimos a criacao por qualquer pessoa, ja que o formulario é publico.
-      // O data.contactEmail e createdAt sao garantidos pela interface.
-      allow create: if request.resource.data.keys().hasAll(['contactEmail', 'createdAt', 'serviceType']) &&
-                    request.resource.data.contactEmail is string &&
-                    request.resource.data.createdAt is timestamp;
-      
-      // Permitimos leitura para que o painel /admin funcione. 
-      // (Em um ambiente de producao real, recomendariamos restringir isso a usuarios autenticados)
-      allow read: if true;
-      allow update, delete: if false; 
+      allow read, write: if true;
     }
   }
 }

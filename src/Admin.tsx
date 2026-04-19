@@ -20,12 +20,20 @@ export default function Admin() {
   useEffect(() => {
     const fetchBriefings = async () => {
       try {
-        const q = query(collection(db, 'briefings'), orderBy('createdAt', 'desc'));
+        const q = query(collection(db, 'briefings'));
         const querySnapshot = await getDocs(q);
         const data = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
         })) as BriefingDoc[];
+        
+        // Sort descending by createdAt manually, putting documents without createdAt at the bottom
+        data.sort((a, b) => {
+          const timeA = a.createdAt?.toMillis?.() || a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const timeB = b.createdAt?.toMillis?.() || b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return timeB - timeA;
+        });
+
         setBriefings(data);
       } catch (error) {
         console.error("Error fetching briefings: ", error);
